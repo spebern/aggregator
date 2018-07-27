@@ -124,7 +124,6 @@ func parseRound(ctx *fasthttp.RequestCtx) (*minerRound, error) {
 
 func proxySubmitRound(ctx *fasthttp.RequestCtx, round *minerRound) error {
 	v, _ := query.Values(round)
-	log.Println(submitURL + "?requestType=submitNonce" + v.Encode())
 	_, respBody, err := client.Post(nil, submitURL+"?requestType=submitNonce&"+v.Encode(), nil)
 	if err != nil {
 		ctx.SetBody(errBytesFor(3, "error reaching pool or wallet"))
